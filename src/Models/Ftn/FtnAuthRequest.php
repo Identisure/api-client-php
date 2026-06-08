@@ -1,0 +1,16 @@
+<?php
+
+declare(strict_types=1);
+
+namespace Idkollen\Client\Models\Ftn;
+
+readonly class FtnAuthRequest
+{
+    public function __construct(
+        public ?string $redirectUrl = null,
+        public ?bool $requestPhone = null,
+        public ?bool $requestEmail = null,
+        public ?bool $requestAddress = null,
+        public ?string $refId = null,
+    ) {}
+}
