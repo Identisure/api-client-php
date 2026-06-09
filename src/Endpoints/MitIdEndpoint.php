@@ -4,6 +4,11 @@ declare(strict_types=1);
 
 namespace Idkollen\Client\Endpoints;
 
+use Idkollen\Client\Models\AgeVerification\AgeVerificationCompleted;
+use Idkollen\Client\Models\AgeVerification\AgeVerificationFailed;
+use Idkollen\Client\Models\AgeVerification\AgeVerificationPending;
+use Idkollen\Client\Models\AgeVerification\AgeVerificationRequest;
+use Idkollen\Client\Models\AgeVerification\AgeVerificationStatus;
 use Idkollen\Client\Models\MitId\MitIdAuthRequest;
 use Idkollen\Client\Models\MitId\MitIdBackchannelAuthRequest;
 use Idkollen\Client\Models\MitId\MitIdCompleted;
@@ -35,6 +40,11 @@ final class MitIdEndpoint
         return self::parseStatus($this->transport->post('/v3/mitid/sign', self::serialize($req)));
     }
 
+    public function ageVerification(AgeVerificationRequest $req): AgeVerificationStatus
+    {
+        return self::parseAgeStatus($this->transport->post('/v3/mitid/age-verification', self::serialize($req)));
+    }
+
     public function authStatus(string $id): MitIdStatus
     {
         return self::parseStatus($this->transport->get('/v3/mitid/auth/' . $id));
@@ -43,6 +53,11 @@ final class MitIdEndpoint
     public function signStatus(string $id): MitIdStatus
     {
         return self::parseStatus($this->transport->get('/v3/mitid/sign/' . $id));
+    }
+
+    public function ageVerificationStatus(string $id): AgeVerificationStatus
+    {
+        return self::parseAgeStatus($this->transport->get('/v3/mitid/age-verification/' . $id));
     }
 
     public function cancelAuth(string $id): void
@@ -55,6 +70,11 @@ final class MitIdEndpoint
         $this->transport->delete('/v3/mitid/sign/' . $id);
     }
 
+    public function cancelAgeVerification(string $id): void
+    {
+        $this->transport->delete('/v3/mitid/age-verification/' . $id);
+    }
+
     public function waitForAuth(string $id, PollOptions $opts = new PollOptions()): MitIdStatus
     {
         return $this->poll(fn() => $this->authStatus($id), $opts);
@@ -63,6 +83,21 @@ final class MitIdEndpoint
     public function waitForSign(string $id, PollOptions $opts = new PollOptions()): MitIdStatus
     {
         return $this->poll(fn() => $this->signStatus($id), $opts);
+    }
+
+    public function waitForAgeVerification(string $id, PollOptions $opts = new PollOptions()): AgeVerificationStatus
+    {
+        $deadline = time() + $opts->timeout;
+        while (true) {
+            $status = $this->ageVerificationStatus($id);
+            if (!$status instanceof AgeVerificationPending) {
+                return $status;
+            }
+            if (time() >= $deadline) {
+                throw new WaitException(timeout: true);
+            }
+            sleep($opts->interval);
+        }
     }
 
     private function poll(\Closure $fn, PollOptions $opts): MitIdStatus
@@ -83,6 +118,27 @@ final class MitIdEndpoint
     private static function serialize(object $req): array
     {
         return array_filter(get_object_vars($req), fn($v) => $v !== null);
+    }
+
+    private static function parseAgeStatus(array $d): AgeVerificationStatus
+    {
+        return match ($d['status']) {
+            'PENDING' => new AgeVerificationPending(
+                id: $d['id'],
+                url: $d['url'] ?? null,
+                minAge: $d['minAge'] ?? null,
+                maxAge: $d['maxAge'] ?? null,
+            ),
+            'COMPLETED' => new AgeVerificationCompleted(
+                id: $d['id'],
+                ageVerified: $d['ageVerified'],
+            ),
+            'FAILED' => new AgeVerificationFailed(
+                id: $d['id'],
+                error: $d['error'],
+            ),
+            default => throw new \UnexpectedValueException("Unknown age verification status: {$d['status']}"),
+        };
     }
 
     private static function parseStatus(array $d): MitIdStatus
