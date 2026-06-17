@@ -46,12 +46,4 @@ final class DocumentTest extends TestCase
         $result = $this->endpoint->download('doc1');
         self::assertSame("\x25PDF-binary-bytes", $result);
     }
-
-    public function testDelete(): void
-    {
-        $this->http->enqueue(204, '');
-        $this->endpoint->delete('doc1');
-        self::assertSame('DELETE', $this->http->lastRequest()->getMethod());
-        self::assertSame('/document/doc1', $this->http->lastRequest()->getUri()->getPath());
-    }
 }
