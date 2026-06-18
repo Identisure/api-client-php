@@ -153,7 +153,7 @@ final class MitIdEndpoint
             'COMPLETED' => new MitIdCompleted(
                 id: $d['id'],
                 refId: $d['refId'] ?? null,
-                ssn: $d['ssn'],
+                ssn: $d['ssn'] ?? null,
                 name: $d['name'],
                 givenName: $d['givenName'],
                 surname: $d['surname'],

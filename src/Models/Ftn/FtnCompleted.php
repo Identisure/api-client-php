@@ -9,7 +9,7 @@ readonly class FtnCompleted implements FtnStatus
     public function __construct(
         public string $id,
         public ?string $refId,
-        public string $ssn,
+        public ?string $ssn,
         public string $name,
         public string $givenName,
         public string $surname,
