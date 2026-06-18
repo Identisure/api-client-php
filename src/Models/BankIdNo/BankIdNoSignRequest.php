@@ -11,10 +11,6 @@ readonly class BankIdNoSignRequest
         public ?string $text = null,
         /** @var list<string>|null */
         public ?array $documents = null,
-        public ?bool $requestSsn = null,
-        public ?bool $requestPhone = null,
-        public ?bool $requestEmail = null,
-        public ?bool $requestAddress = null,
         public ?string $refId = null,
     ) {}
 }
