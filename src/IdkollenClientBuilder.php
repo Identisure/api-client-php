@@ -29,7 +29,7 @@ final class IdkollenClientBuilder
 
     public function baseUrl(string $url): static
     {
-        $this->baseUrl = $url;
+        $this->baseUrl = rtrim($url, '/');
         return $this;
     }
 
