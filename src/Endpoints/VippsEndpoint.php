@@ -40,13 +40,13 @@ final class VippsEndpoint
 
     public function waitForAuth(string $id, PollOptions $opts = new PollOptions()): VippsStatus
     {
-        $deadline = time() + $opts->timeout;
+        $deadline = hrtime(true) + $opts->timeout * 1_000_000_000;
         while (true) {
             $status = $this->authStatus($id);
             if (!$status instanceof VippsPending) {
                 return $status;
             }
-            if (time() >= $deadline) {
+            if (hrtime(true) >= $deadline) {
                 throw new WaitException(timeout: true);
             }
             sleep($opts->interval);

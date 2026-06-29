@@ -92,13 +92,13 @@ final class FrejaEndpoint
 
     public function waitForAgeVerification(string $id, PollOptions $opts = new PollOptions()): AgeVerificationStatus
     {
-        $deadline = time() + $opts->timeout;
+        $deadline = hrtime(true) + $opts->timeout * 1_000_000_000;
         while (true) {
             $status = $this->ageVerificationStatus($id);
             if (!$status instanceof AgeVerificationPending) {
                 return $status;
             }
-            if (time() >= $deadline) {
+            if (hrtime(true) >= $deadline) {
                 throw new WaitException(timeout: true);
             }
             sleep($opts->interval);
@@ -107,13 +107,13 @@ final class FrejaEndpoint
 
     private function poll(\Closure $fn, PollOptions $opts): FrejaStatus
     {
-        $deadline = time() + $opts->timeout;
+        $deadline = hrtime(true) + $opts->timeout * 1_000_000_000;
         while (true) {
             $status = $fn();
             if (!$status instanceof FrejaPending) {
                 return $status;
             }
-            if (time() >= $deadline) {
+            if (hrtime(true) >= $deadline) {
                 throw new WaitException(timeout: true);
             }
             sleep($opts->interval);

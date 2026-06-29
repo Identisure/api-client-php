@@ -54,13 +54,13 @@ final class FtnEndpoint
 
     public function waitForAuth(string $id, PollOptions $opts = new PollOptions()): FtnStatus
     {
-        $deadline = time() + $opts->timeout;
+        $deadline = hrtime(true) + $opts->timeout * 1_000_000_000;
         while (true) {
             $status = $this->authStatus($id);
             if (!$status instanceof FtnPending) {
                 return $status;
             }
-            if (time() >= $deadline) {
+            if (hrtime(true) >= $deadline) {
                 throw new WaitException(timeout: true);
             }
             sleep($opts->interval);
@@ -69,13 +69,13 @@ final class FtnEndpoint
 
     public function waitForAgeVerification(string $id, PollOptions $opts = new PollOptions()): AgeVerificationStatus
     {
-        $deadline = time() + $opts->timeout;
+        $deadline = hrtime(true) + $opts->timeout * 1_000_000_000;
         while (true) {
             $status = $this->ageVerificationStatus($id);
             if (!$status instanceof AgeVerificationPending) {
                 return $status;
             }
-            if (time() >= $deadline) {
+            if (hrtime(true) >= $deadline) {
                 throw new WaitException(timeout: true);
             }
             sleep($opts->interval);
