@@ -4,6 +4,7 @@ declare(strict_types=1);
 
 namespace Idkollen\Client\Endpoints;
 
+use Idkollen\Client\IdkollenException;
 use Idkollen\Client\Models\AgeVerification\AgeVerificationCompleted;
 use Idkollen\Client\Models\AgeVerification\AgeVerificationFailed;
 use Idkollen\Client\Models\AgeVerification\AgeVerificationPending;
@@ -137,7 +138,7 @@ final class MitIdEndpoint
                 id: $d['id'],
                 error: $d['error'],
             ),
-            default => throw new \UnexpectedValueException("Unknown age verification status: {$d['status']}"),
+            default => throw new IdkollenException(0, "Unknown age verification status: {$d['status']}"),
         };
     }
 
@@ -172,7 +173,7 @@ final class MitIdEndpoint
                 refId: $d['refId'] ?? null,
                 error: $d['error'],
             ),
-            default => throw new \UnexpectedValueException("Unknown mitid status: {$d['status']}"),
+            default => throw new IdkollenException(0, "Unknown mitid status: {$d['status']}"),
         };
     }
 }

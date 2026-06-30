@@ -4,6 +4,7 @@ declare(strict_types=1);
 
 namespace Idkollen\Client\Endpoints;
 
+use Idkollen\Client\IdkollenException;
 use Idkollen\Client\Models\Vipps\VippsAuthRequest;
 use Idkollen\Client\Models\Vipps\VippsBackchannelAuthRequest;
 use Idkollen\Client\Models\Vipps\VippsCompleted;
@@ -85,7 +86,7 @@ final class VippsEndpoint
                 refId: $d['refId'] ?? null,
                 error: $d['error'],
             ),
-            default => throw new \UnexpectedValueException("Unknown vipps status: {$d['status']}"),
+            default => throw new IdkollenException(0, "Unknown vipps status: {$d['status']}"),
         };
     }
 }

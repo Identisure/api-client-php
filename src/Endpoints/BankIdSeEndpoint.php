@@ -4,6 +4,7 @@ declare(strict_types=1);
 
 namespace Idkollen\Client\Endpoints;
 
+use Idkollen\Client\IdkollenException;
 use Idkollen\Client\Models\AgeVerification\AgeVerificationCompleted;
 use Idkollen\Client\Models\AgeVerification\AgeVerificationFailed;
 use Idkollen\Client\Models\AgeVerification\AgeVerificationPending;
@@ -174,7 +175,7 @@ final class BankIdSeEndpoint
                 refId: $d['refId'] ?? null,
                 error: $d['error'],
             ),
-            default => throw new \UnexpectedValueException("Unknown bankid-se status: {$d['status']}"),
+            default => throw new IdkollenException(0, "Unknown bankid-se status: {$d['status']}"),
         };
     }
 
@@ -202,7 +203,7 @@ final class BankIdSeEndpoint
                 refId: $d['refId'] ?? null,
                 error: $d['error'],
             ),
-            default => throw new \UnexpectedValueException("Unknown bankid-se phone status: {$d['status']}"),
+            default => throw new IdkollenException(0, "Unknown bankid-se phone status: {$d['status']}"),
         };
     }
 
@@ -223,7 +224,7 @@ final class BankIdSeEndpoint
                 id: $d['id'],
                 error: $d['error'],
             ),
-            default => throw new \UnexpectedValueException("Unknown age verification status: {$d['status']}"),
+            default => throw new IdkollenException(0, "Unknown age verification status: {$d['status']}"),
         };
     }
 }
