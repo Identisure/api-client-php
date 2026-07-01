@@ -53,6 +53,8 @@ final class Transport
     public function postMultipart(string $path, string $data, string $filename, string $mimeType): array
     {
         $boundary = bin2hex(random_bytes(16));
+        // WHATWG multipart/form-data encoding, as browsers do, so the quoted value stays intact.
+        $filename = str_replace(['"', "\r", "\n"], ['%22', '%0D', '%0A'], $filename);
         $body = "--{$boundary}\r\n"
             . "Content-Disposition: form-data; name=\"file\"; filename=\"{$filename}\"\r\n"
             . "Content-Type: {$mimeType}\r\n"
