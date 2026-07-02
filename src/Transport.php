@@ -23,8 +23,13 @@ final class Transport
         private readonly StreamFactoryInterface $streamFactory,
         private readonly string $baseUrl,
         private readonly string $clientId,
-        private readonly string $clientSecret,
+        #[\SensitiveParameter] private readonly string $clientSecret,
     ) {}
+
+    public function __debugInfo(): array
+    {
+        return ['clientSecret' => '***'] + get_object_vars($this);
+    }
 
     public function post(string $path, array $body): array
     {

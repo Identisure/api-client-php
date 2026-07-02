@@ -18,8 +18,13 @@ final class IdkollenClientBuilder
 
     public function __construct(
         private readonly string $clientId,
-        private readonly string $clientSecret,
+        #[\SensitiveParameter] private readonly string $clientSecret,
     ) {}
+
+    public function __debugInfo(): array
+    {
+        return ['clientSecret' => '***'] + get_object_vars($this);
+    }
 
     public function environment(Environment $env): static
     {
