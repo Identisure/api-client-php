@@ -73,7 +73,7 @@ final class IdkollenClientBuilder
     private static function discoverHttpClient(): ClientInterface
     {
         if (class_exists(\GuzzleHttp\Client::class)) {
-            return new \GuzzleHttp\Client();
+            return new \GuzzleHttp\Client(['timeout' => 30]);
         }
         throw new \RuntimeException(
             'No PSR-18 HTTP client available. Install guzzlehttp/guzzle or pass one via httpClient().'
