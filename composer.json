@@ -28,6 +28,6 @@
     },
     "scripts": {
         "test": "phpunit",
-        "check": "php -l src/"
+        "check": "find src tests -name '*.php' -print0 | xargs -0 -n1 php -l"
     }
 }
