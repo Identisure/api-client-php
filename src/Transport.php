@@ -88,8 +88,15 @@ final class Transport
         if ($body === '') {
             return [];
         }
-        $decoded = json_decode($body, true);
-        return is_array($decoded) ? $decoded : [];
+        try {
+            $decoded = json_decode($body, true, flags: JSON_THROW_ON_ERROR);
+        } catch (\JsonException $e) {
+            throw new IdkollenException(0, "Invalid JSON response: {$e->getMessage()}", $e);
+        }
+        if (!is_array($decoded)) {
+            throw new IdkollenException(0, 'Expected a JSON object in the response');
+        }
+        return $decoded;
     }
 
     private function sendRaw(RequestInterface $request): string
@@ -97,7 +104,7 @@ final class Transport
         try {
             $response = $this->httpClient->sendRequest($request);
         } catch (ClientExceptionInterface $e) {
-            throw new IdkollenException(0, $e->getMessage());
+            throw new IdkollenException(0, $e->getMessage(), $e);
         }
 
         $statusCode = $response->getStatusCode();
