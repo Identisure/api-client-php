@@ -70,13 +70,13 @@ final class BankIdSeTest extends TestCase
         $this->http->enqueue(200, [
             'status' => 'FAILED',
             'id' => 'abc',
-            'error' => 'userCancel',
+            'error' => 'CANCELLED',
         ]);
 
         $result = $this->endpoint->auth(new BankIdSeAuthRequest());
 
         self::assertInstanceOf(BankIdSeFailed::class, $result);
-        self::assertSame('userCancel', $result->error);
+        self::assertSame('CANCELLED', $result->error);
     }
 
     public function testPhoneAuthPending(): void
@@ -89,7 +89,7 @@ final class BankIdSeTest extends TestCase
 
         $result = $this->endpoint->phoneAuth(new BankIdSePhoneAuthRequest(
             ssn: '199001011234',
-            callInitiator: 'user',
+            callInitiator: 'USER',
         ));
 
         self::assertInstanceOf(BankIdSePendingPhone::class, $result);
