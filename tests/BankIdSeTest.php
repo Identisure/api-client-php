@@ -57,6 +57,7 @@ final class BankIdSeTest extends TestCase
             'name' => 'Test User',
             'givenName' => 'Test',
             'surname' => 'User',
+            'ocspResponse' => 'MIIH',
         ]);
 
         $result = $this->endpoint->auth(new BankIdSeAuthRequest());

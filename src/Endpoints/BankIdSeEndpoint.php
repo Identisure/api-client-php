@@ -12,6 +12,7 @@ use Idkollen\Client\Models\AgeVerification\AgeVerificationRequest;
 use Idkollen\Client\Models\AgeVerification\AgeVerificationStatus;
 use Idkollen\Client\Models\BankIdSe\BankIdSeAuthRequest;
 use Idkollen\Client\Models\BankIdSe\BankIdSeCompleted;
+use Idkollen\Client\Models\BankIdSe\BankIdSeDevice;
 use Idkollen\Client\Models\BankIdSe\BankIdSeFailed;
 use Idkollen\Client\Models\BankIdSe\BankIdSePending;
 use Idkollen\Client\Models\BankIdSe\BankIdSePendingPhone;
@@ -19,6 +20,7 @@ use Idkollen\Client\Models\BankIdSe\BankIdSePhoneAuthRequest;
 use Idkollen\Client\Models\BankIdSe\BankIdSePhoneSignRequest;
 use Idkollen\Client\Models\BankIdSe\BankIdSePhoneStatus;
 use Idkollen\Client\Models\BankIdSe\BankIdSeSignRequest;
+use Idkollen\Client\Models\BankIdSe\BankIdSeStepUp;
 use Idkollen\Client\Models\BankIdSe\BankIdSeStatus;
 use Idkollen\Client\Models\BankIdSe\BankIdSeVerifyRequest;
 use Idkollen\Client\Models\BankIdSe\BankIdSeVerifyResponse;
@@ -167,6 +169,16 @@ final class BankIdSeEndpoint
                 givenName: $d['givenName'],
                 surname: $d['surname'],
                 certStartDate: $d['certStartDate'] ?? null,
+                ocspResponse: $d['ocspResponse'],
+                risk: $d['risk'] ?? null,
+                device: isset($d['device']) ? new BankIdSeDevice(
+                    ipAddress: $d['device']['ipAddress'] ?? null,
+                    uhi: $d['device']['uhi'] ?? null,
+                ) : null,
+                stepUp: isset($d['stepUp']) ? new BankIdSeStepUp(
+                    mrtd: $d['stepUp']['mrtd'] ?? null,
+                    face: $d['stepUp']['face'] ?? null,
+                ) : null,
                 address: $d['address'] ?? null,
                 companySignatoryText: $d['companySignatoryText'] ?? null,
                 authenticatedAt: $d['authenticatedAt'] ?? null,
@@ -197,6 +209,16 @@ final class BankIdSeEndpoint
                 givenName: $d['givenName'],
                 surname: $d['surname'],
                 certStartDate: $d['certStartDate'] ?? null,
+                ocspResponse: $d['ocspResponse'],
+                risk: $d['risk'] ?? null,
+                device: isset($d['device']) ? new BankIdSeDevice(
+                    ipAddress: $d['device']['ipAddress'] ?? null,
+                    uhi: $d['device']['uhi'] ?? null,
+                ) : null,
+                stepUp: isset($d['stepUp']) ? new BankIdSeStepUp(
+                    mrtd: $d['stepUp']['mrtd'] ?? null,
+                    face: $d['stepUp']['face'] ?? null,
+                ) : null,
                 address: $d['address'] ?? null,
                 companySignatoryText: $d['companySignatoryText'] ?? null,
                 authenticatedAt: $d['authenticatedAt'] ?? null,
