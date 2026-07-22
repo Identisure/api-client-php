@@ -166,6 +166,8 @@ final class FrejaEndpoint
                 surname: $d['surname'],
                 address: $d['address'] ?? null,
                 companySignatoryText: $d['companySignatoryText'] ?? null,
+                authenticatedAt: $d['authenticatedAt'] ?? null,
+                signedAt: $d['signedAt'] ?? null,
             ),
             'FAILED' => new FrejaFailed(
                 id: $d['id'],

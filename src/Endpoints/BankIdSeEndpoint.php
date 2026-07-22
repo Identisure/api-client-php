@@ -169,6 +169,8 @@ final class BankIdSeEndpoint
                 certStartDate: $d['certStartDate'] ?? null,
                 address: $d['address'] ?? null,
                 companySignatoryText: $d['companySignatoryText'] ?? null,
+                authenticatedAt: $d['authenticatedAt'] ?? null,
+                signedAt: $d['signedAt'] ?? null,
             ),
             'FAILED' => new BankIdSeFailed(
                 id: $d['id'],
@@ -197,6 +199,8 @@ final class BankIdSeEndpoint
                 certStartDate: $d['certStartDate'] ?? null,
                 address: $d['address'] ?? null,
                 companySignatoryText: $d['companySignatoryText'] ?? null,
+                authenticatedAt: $d['authenticatedAt'] ?? null,
+                signedAt: $d['signedAt'] ?? null,
             ),
             'FAILED' => new BankIdSeFailed(
                 id: $d['id'],

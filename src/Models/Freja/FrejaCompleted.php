@@ -16,5 +16,7 @@ readonly class FrejaCompleted implements FrejaStatus
         public string $surname,
         public ?string $address,
         public ?string $companySignatoryText,
+        public ?string $authenticatedAt,
+        public ?string $signedAt,
     ) {}
 }

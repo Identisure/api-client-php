@@ -167,6 +167,8 @@ final class MitIdEndpoint
                 signResult: isset($d['signResult'])
                     ? new MitIdSignResult(checksum: $d['signResult']['checksum'])
                     : null,
+                authenticatedAt: $d['authenticatedAt'] ?? null,
+                signedAt: $d['signedAt'] ?? null,
             ),
             'FAILED' => new MitIdFailed(
                 id: $d['id'],

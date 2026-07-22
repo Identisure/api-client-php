@@ -19,5 +19,6 @@ readonly class VippsCompleted implements VippsStatus
         public ?string $birthDate,
         public ?string $pid,
         public ?string $bankId,
+        public ?string $authenticatedAt,
     ) {}
 }

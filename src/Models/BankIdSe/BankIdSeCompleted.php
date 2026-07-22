@@ -16,5 +16,7 @@ readonly class BankIdSeCompleted implements BankIdSeStatus, BankIdSePhoneStatus
         public ?string $certStartDate,
         public ?string $address,
         public ?string $companySignatoryText,
+        public ?string $authenticatedAt,
+        public ?string $signedAt,
     ) {}
 }

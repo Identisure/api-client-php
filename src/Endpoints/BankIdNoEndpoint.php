@@ -176,6 +176,8 @@ final class BankIdNoEndpoint
                     fn(array $doc) => new BankIdNoSignedDocument(id: $doc['id'], hash: $doc['hash']),
                     $d['signedDocuments'] ?? [],
                 ),
+                authenticatedAt: $d['authenticatedAt'] ?? null,
+                signedAt: $d['signedAt'] ?? null,
             ),
             'FAILED' => new BankIdNoFailed(
                 id: $d['id'],

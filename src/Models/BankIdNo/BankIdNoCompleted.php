@@ -22,5 +22,7 @@ readonly class BankIdNoCompleted implements BankIdNoStatus
         public ?BankIdNoSignResult $signResult,
         /** @var list<BankIdNoSignedDocument> */
         public array $signedDocuments,
+        public ?string $authenticatedAt,
+        public ?string $signedAt,
     ) {}
 }

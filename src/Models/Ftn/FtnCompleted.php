@@ -19,5 +19,7 @@ readonly class FtnCompleted implements FtnStatus
         public ?string $birthDate,
         public ?string $pid,
         public ?string $bankId,
+        public ?string $bankName,
+        public ?string $authenticatedAt,
     ) {}
 }

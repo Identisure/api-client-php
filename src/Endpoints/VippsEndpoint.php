@@ -80,6 +80,7 @@ final class VippsEndpoint
                 birthDate: $d['birthDate'] ?? null,
                 pid: $d['pid'] ?? null,
                 bankId: $d['bankId'] ?? null,
+                authenticatedAt: $d['authenticatedAt'] ?? null,
             ),
             'FAILED' => new VippsFailed(
                 id: $d['id'],

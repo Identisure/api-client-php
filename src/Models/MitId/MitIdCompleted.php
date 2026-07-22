@@ -20,5 +20,7 @@ readonly class MitIdCompleted implements MitIdStatus
         public ?string $pid,
         public ?string $bankId,
         public ?MitIdSignResult $signResult,
+        public ?string $authenticatedAt,
+        public ?string $signedAt,
     ) {}
 }

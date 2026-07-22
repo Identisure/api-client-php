@@ -109,6 +109,8 @@ final class FtnEndpoint
                 birthDate: $d['birthDate'] ?? null,
                 pid: $d['pid'] ?? null,
                 bankId: $d['bankId'] ?? null,
+                bankName: $d['bankName'] ?? null,
+                authenticatedAt: $d['authenticatedAt'] ?? null,
             ),
             'FAILED' => new FtnFailed(
                 id: $d['id'],
