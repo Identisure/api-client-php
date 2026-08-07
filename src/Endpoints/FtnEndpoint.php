@@ -4,17 +4,18 @@ declare(strict_types=1);
 
 namespace Idkollen\Client\Endpoints;
 
-use Idkollen\Client\IdkollenException;
 use Idkollen\Client\Models\AgeVerification\AgeVerificationCompleted;
 use Idkollen\Client\Models\AgeVerification\AgeVerificationFailed;
 use Idkollen\Client\Models\AgeVerification\AgeVerificationPending;
 use Idkollen\Client\Models\AgeVerification\AgeVerificationRequest;
 use Idkollen\Client\Models\AgeVerification\AgeVerificationStatus;
+use Idkollen\Client\Models\AgeVerification\AgeVerificationUnknown;
 use Idkollen\Client\Models\Ftn\FtnAuthRequest;
 use Idkollen\Client\Models\Ftn\FtnCompleted;
 use Idkollen\Client\Models\Ftn\FtnFailed;
 use Idkollen\Client\Models\Ftn\FtnPending;
 use Idkollen\Client\Models\Ftn\FtnStatus;
+use Idkollen\Client\Models\Ftn\FtnUnknown;
 use Idkollen\Client\PollOptions;
 use Idkollen\Client\Transport;
 use Idkollen\Client\WaitException;
@@ -117,7 +118,7 @@ final class FtnEndpoint
                 refId: $d['refId'] ?? null,
                 error: $d['error'],
             ),
-            default => throw new IdkollenException(0, "Unknown ftn status: {$d['status']}"),
+            default => new FtnUnknown(status: $d['status']),
         };
     }
 
@@ -138,7 +139,7 @@ final class FtnEndpoint
                 id: $d['id'],
                 error: $d['error'],
             ),
-            default => throw new IdkollenException(0, "Unknown age verification status: {$d['status']}"),
+            default => new AgeVerificationUnknown(status: $d['status']),
         };
     }
 }

@@ -4,13 +4,13 @@ declare(strict_types=1);
 
 namespace Idkollen\Client\Endpoints;
 
-use Idkollen\Client\IdkollenException;
 use Idkollen\Client\Models\Vipps\VippsAuthRequest;
 use Idkollen\Client\Models\Vipps\VippsBackchannelAuthRequest;
 use Idkollen\Client\Models\Vipps\VippsCompleted;
 use Idkollen\Client\Models\Vipps\VippsFailed;
 use Idkollen\Client\Models\Vipps\VippsPending;
 use Idkollen\Client\Models\Vipps\VippsStatus;
+use Idkollen\Client\Models\Vipps\VippsUnknown;
 use Idkollen\Client\PollOptions;
 use Idkollen\Client\Transport;
 use Idkollen\Client\WaitException;
@@ -87,7 +87,7 @@ final class VippsEndpoint
                 refId: $d['refId'] ?? null,
                 error: $d['error'],
             ),
-            default => throw new IdkollenException(0, "Unknown vipps status: {$d['status']}"),
+            default => new VippsUnknown(status: $d['status']),
         };
     }
 }

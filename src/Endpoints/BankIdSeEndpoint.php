@@ -4,12 +4,12 @@ declare(strict_types=1);
 
 namespace Idkollen\Client\Endpoints;
 
-use Idkollen\Client\IdkollenException;
 use Idkollen\Client\Models\AgeVerification\AgeVerificationCompleted;
 use Idkollen\Client\Models\AgeVerification\AgeVerificationFailed;
 use Idkollen\Client\Models\AgeVerification\AgeVerificationPending;
 use Idkollen\Client\Models\AgeVerification\AgeVerificationRequest;
 use Idkollen\Client\Models\AgeVerification\AgeVerificationStatus;
+use Idkollen\Client\Models\AgeVerification\AgeVerificationUnknown;
 use Idkollen\Client\Models\BankIdSe\BankIdSeAuthRequest;
 use Idkollen\Client\Models\BankIdSe\BankIdSeCompleted;
 use Idkollen\Client\Models\BankIdSe\BankIdSeDevice;
@@ -22,6 +22,7 @@ use Idkollen\Client\Models\BankIdSe\BankIdSePhoneStatus;
 use Idkollen\Client\Models\BankIdSe\BankIdSeSignRequest;
 use Idkollen\Client\Models\BankIdSe\BankIdSeStepUp;
 use Idkollen\Client\Models\BankIdSe\BankIdSeStatus;
+use Idkollen\Client\Models\BankIdSe\BankIdSeUnknown;
 use Idkollen\Client\Models\BankIdSe\BankIdSeVerifyRequest;
 use Idkollen\Client\Models\BankIdSe\BankIdSeVerifyResponse;
 use Idkollen\Client\PollOptions;
@@ -189,7 +190,7 @@ final class BankIdSeEndpoint
                 refId: $d['refId'] ?? null,
                 error: $d['error'],
             ),
-            default => throw new IdkollenException(0, "Unknown bankid-se status: {$d['status']}"),
+            default => new BankIdSeUnknown(status: $d['status']),
         };
     }
 
@@ -229,7 +230,7 @@ final class BankIdSeEndpoint
                 refId: $d['refId'] ?? null,
                 error: $d['error'],
             ),
-            default => throw new IdkollenException(0, "Unknown bankid-se phone status: {$d['status']}"),
+            default => new BankIdSeUnknown(status: $d['status']),
         };
     }
 
@@ -250,7 +251,7 @@ final class BankIdSeEndpoint
                 id: $d['id'],
                 error: $d['error'],
             ),
-            default => throw new IdkollenException(0, "Unknown age verification status: {$d['status']}"),
+            default => new AgeVerificationUnknown(status: $d['status']),
         };
     }
 }

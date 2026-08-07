@@ -10,6 +10,7 @@ use Idkollen\Client\Models\AgeVerification\AgeVerificationCompleted;
 use Idkollen\Client\Models\AgeVerification\AgeVerificationRequest;
 use Idkollen\Client\Models\Ftn\FtnAuthRequest;
 use Idkollen\Client\Models\Ftn\FtnPending;
+use Idkollen\Client\Models\Ftn\FtnUnknown;
 use Idkollen\Client\Transport;
 use PHPUnit\Framework\TestCase;
 
@@ -36,6 +37,17 @@ final class FtnTest extends TestCase
         $result = $this->endpoint->auth(new FtnAuthRequest());
         self::assertInstanceOf(FtnPending::class, $result);
         self::assertSame('https://login', $result->url);
+    }
+
+    public function testUnknownStatus(): void
+    {
+        $this->http->enqueue(200, [
+            'status' => 'SOMETHING_NEW',
+            'id' => 'f1',
+        ]);
+        $result = $this->endpoint->authStatus('f1');
+        self::assertInstanceOf(FtnUnknown::class, $result);
+        self::assertSame('SOMETHING_NEW', $result->status);
     }
 
     public function testAgeVerificationCompleted(): void

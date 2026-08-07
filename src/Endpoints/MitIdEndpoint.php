@@ -4,12 +4,12 @@ declare(strict_types=1);
 
 namespace Idkollen\Client\Endpoints;
 
-use Idkollen\Client\IdkollenException;
 use Idkollen\Client\Models\AgeVerification\AgeVerificationCompleted;
 use Idkollen\Client\Models\AgeVerification\AgeVerificationFailed;
 use Idkollen\Client\Models\AgeVerification\AgeVerificationPending;
 use Idkollen\Client\Models\AgeVerification\AgeVerificationRequest;
 use Idkollen\Client\Models\AgeVerification\AgeVerificationStatus;
+use Idkollen\Client\Models\AgeVerification\AgeVerificationUnknown;
 use Idkollen\Client\Models\MitId\MitIdAuthRequest;
 use Idkollen\Client\Models\MitId\MitIdBackchannelAuthRequest;
 use Idkollen\Client\Models\MitId\MitIdCompleted;
@@ -18,6 +18,7 @@ use Idkollen\Client\Models\MitId\MitIdPending;
 use Idkollen\Client\Models\MitId\MitIdSignRequest;
 use Idkollen\Client\Models\MitId\MitIdSignResult;
 use Idkollen\Client\Models\MitId\MitIdStatus;
+use Idkollen\Client\Models\MitId\MitIdUnknown;
 use Idkollen\Client\PollOptions;
 use Idkollen\Client\Transport;
 use Idkollen\Client\WaitException;
@@ -138,7 +139,7 @@ final class MitIdEndpoint
                 id: $d['id'],
                 error: $d['error'],
             ),
-            default => throw new IdkollenException(0, "Unknown age verification status: {$d['status']}"),
+            default => new AgeVerificationUnknown(status: $d['status']),
         };
     }
 
@@ -175,7 +176,7 @@ final class MitIdEndpoint
                 refId: $d['refId'] ?? null,
                 error: $d['error'],
             ),
-            default => throw new IdkollenException(0, "Unknown mitid status: {$d['status']}"),
+            default => new MitIdUnknown(status: $d['status']),
         };
     }
 }

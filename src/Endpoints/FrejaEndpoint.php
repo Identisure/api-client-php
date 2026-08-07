@@ -4,12 +4,12 @@ declare(strict_types=1);
 
 namespace Idkollen\Client\Endpoints;
 
-use Idkollen\Client\IdkollenException;
 use Idkollen\Client\Models\AgeVerification\AgeVerificationCompleted;
 use Idkollen\Client\Models\AgeVerification\AgeVerificationFailed;
 use Idkollen\Client\Models\AgeVerification\AgeVerificationPending;
 use Idkollen\Client\Models\AgeVerification\AgeVerificationRequest;
 use Idkollen\Client\Models\AgeVerification\AgeVerificationStatus;
+use Idkollen\Client\Models\AgeVerification\AgeVerificationUnknown;
 use Idkollen\Client\Models\Freja\FrejaAuthRequest;
 use Idkollen\Client\Models\Freja\FrejaBackchannelAuthRequest;
 use Idkollen\Client\Models\Freja\FrejaBackchannelSignRequest;
@@ -18,6 +18,7 @@ use Idkollen\Client\Models\Freja\FrejaFailed;
 use Idkollen\Client\Models\Freja\FrejaPending;
 use Idkollen\Client\Models\Freja\FrejaSignRequest;
 use Idkollen\Client\Models\Freja\FrejaStatus;
+use Idkollen\Client\Models\Freja\FrejaUnknown;
 use Idkollen\Client\PollOptions;
 use Idkollen\Client\Transport;
 use Idkollen\Client\WaitException;
@@ -143,7 +144,7 @@ final class FrejaEndpoint
                 id: $d['id'],
                 error: $d['error'],
             ),
-            default => throw new IdkollenException(0, "Unknown age verification status: {$d['status']}"),
+            default => new AgeVerificationUnknown(status: $d['status']),
         };
     }
 
@@ -174,7 +175,7 @@ final class FrejaEndpoint
                 refId: $d['refId'] ?? null,
                 error: $d['error'],
             ),
-            default => throw new IdkollenException(0, "Unknown freja status: {$d['status']}"),
+            default => new FrejaUnknown(status: $d['status']),
         };
     }
 }

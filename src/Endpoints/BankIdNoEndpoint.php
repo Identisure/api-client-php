@@ -4,12 +4,12 @@ declare(strict_types=1);
 
 namespace Idkollen\Client\Endpoints;
 
-use Idkollen\Client\IdkollenException;
 use Idkollen\Client\Models\AgeVerification\AgeVerificationCompleted;
 use Idkollen\Client\Models\AgeVerification\AgeVerificationFailed;
 use Idkollen\Client\Models\AgeVerification\AgeVerificationPending;
 use Idkollen\Client\Models\AgeVerification\AgeVerificationRequest;
 use Idkollen\Client\Models\AgeVerification\AgeVerificationStatus;
+use Idkollen\Client\Models\AgeVerification\AgeVerificationUnknown;
 use Idkollen\Client\Models\BankIdNo\BankIdNoAuthRequest;
 use Idkollen\Client\Models\BankIdNo\BankIdNoBackchannelAuthRequest;
 use Idkollen\Client\Models\BankIdNo\BankIdNoCompleted;
@@ -19,6 +19,7 @@ use Idkollen\Client\Models\BankIdNo\BankIdNoSignRequest;
 use Idkollen\Client\Models\BankIdNo\BankIdNoSignResult;
 use Idkollen\Client\Models\BankIdNo\BankIdNoSignedDocument;
 use Idkollen\Client\Models\BankIdNo\BankIdNoStatus;
+use Idkollen\Client\Models\BankIdNo\BankIdNoUnknown;
 use Idkollen\Client\PollOptions;
 use Idkollen\Client\Transport;
 use Idkollen\Client\WaitException;
@@ -139,7 +140,7 @@ final class BankIdNoEndpoint
                 id: $d['id'],
                 error: $d['error'],
             ),
-            default => throw new IdkollenException(0, "Unknown age verification status: {$d['status']}"),
+            default => new AgeVerificationUnknown(status: $d['status']),
         };
     }
 
@@ -184,7 +185,7 @@ final class BankIdNoEndpoint
                 refId: $d['refId'] ?? null,
                 error: $d['error'],
             ),
-            default => throw new IdkollenException(0, "Unknown bankid-no status: {$d['status']}"),
+            default => new BankIdNoUnknown(status: $d['status']),
         };
     }
 }
