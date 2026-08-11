@@ -56,6 +56,16 @@ if ($result instanceof BankIdSeCompleted) {
 }
 ```
 
+### Verifying callbacks
+
+Pass the raw request body exactly as received, before parsing it.
+
+```php
+use Idkollen\Client\CallbackSignature;
+
+$valid = CallbackSignature::verify($rawBody, $request->getHeaderLine('X-Signature-SHA256'), $hmacSecret);
+```
+
 ## Development
 
 ### Prerequisites
