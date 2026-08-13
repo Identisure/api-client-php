@@ -15,6 +15,7 @@ final class IdkollenClientBuilder
     private ?ClientInterface $httpClient = null;
     private ?RequestFactoryInterface $requestFactory = null;
     private ?StreamFactoryInterface $streamFactory = null;
+    private float $timeout = 30.0;
 
     public function __construct(
         private readonly string $clientId,
@@ -56,9 +57,21 @@ final class IdkollenClientBuilder
         return $this;
     }
 
+    /**
+     * Timeout for each HTTP request, in seconds. Must be positive. Default: 30.
+     *
+     * Only applies to the default Guzzle client; PSR-18 has no per-request timeout,
+     * so configure a client passed via httpClient() yourself.
+     */
+    public function timeout(float $seconds): static
+    {
+        $this->timeout = $seconds;
+        return $this;
+    }
+
     public function build(): IdkollenClient
     {
-        $httpClient = $this->httpClient ?? self::discoverHttpClient();
+        $httpClient = $this->httpClient ?? self::discoverHttpClient($this->timeout);
         $requestFactory = $this->requestFactory ?? self::discoverHttpFactory();
         $streamFactory = $this->streamFactory ?? self::discoverHttpFactory();
         $baseUrl = $this->baseUrl ?? $this->environment->baseUrl();
@@ -75,10 +88,10 @@ final class IdkollenClientBuilder
         return new IdkollenClient($transport);
     }
 
-    private static function discoverHttpClient(): ClientInterface
+    private static function discoverHttpClient(float $timeout): ClientInterface
     {
         if (class_exists(\GuzzleHttp\Client::class)) {
-            return new \GuzzleHttp\Client(['timeout' => 30]);
+            return new \GuzzleHttp\Client(['timeout' => $timeout]);
         }
         throw new \RuntimeException(
             'No PSR-18 HTTP client available. Install guzzlehttp/guzzle or pass one via httpClient().'
