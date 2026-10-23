@@ -18,16 +18,16 @@
     },
     "autoload": {
         "psr-4": {
-            "Idkollen\\Client\\": "src/"
+            "Idkollen\\Client\\": "php/src/"
         }
     },
     "autoload-dev": {
         "psr-4": {
-            "Idkollen\\Client\\Tests\\": "tests/"
+            "Idkollen\\Client\\Tests\\": "php/tests/"
         }
     },
     "scripts": {
-        "test": "phpunit",
-        "check": "find src tests -name '*.php' -print0 | xargs -0 -n1 php -l"
+        "test": "phpunit -c php/phpunit.xml",
+        "check": "find php/src php/tests -name '*.php' -print0 | xargs -0 -n1 php -l"
     }
 }
