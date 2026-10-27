@@ -17,9 +17,10 @@ final class MockHttpClient implements ClientInterface
     /** @var list<RequestInterface> */
     private array $requests = [];
 
+    /** @param array<mixed>|string $body */
     public function enqueue(int $status, array|string $body): void
     {
-        $bodyStr = is_array($body) ? json_encode($body) : $body;
+        $bodyStr = is_array($body) ? json_encode($body, JSON_THROW_ON_ERROR) : $body;
         $this->queue[] = ['status' => $status, 'body' => $bodyStr];
     }
 

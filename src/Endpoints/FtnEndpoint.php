@@ -84,11 +84,13 @@ final class FtnEndpoint
         }
     }
 
+    /** @return array<string, mixed> */
     private static function serialize(object $req): array
     {
         return array_filter(get_object_vars($req), fn($v) => $v !== null);
     }
 
+    /** @param array<mixed> $d */
     private static function parseStatus(array $d): FtnStatus
     {
         return match ($d['status']) {
@@ -122,6 +124,7 @@ final class FtnEndpoint
         };
     }
 
+    /** @param array<mixed> $d */
     private static function parseAgeStatus(array $d): AgeVerificationStatus
     {
         return match ($d['status']) {

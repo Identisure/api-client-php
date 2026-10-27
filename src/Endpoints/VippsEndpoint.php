@@ -54,11 +54,13 @@ final class VippsEndpoint
         }
     }
 
+    /** @return array<string, mixed> */
     private static function serialize(object $req): array
     {
         return array_filter(get_object_vars($req), fn($v) => $v !== null);
     }
 
+    /** @param array<mixed> $d */
     private static function parseStatus(array $d): VippsStatus
     {
         return match ($d['status']) {

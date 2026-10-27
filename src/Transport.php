@@ -23,7 +23,8 @@ final class Transport
         private readonly StreamFactoryInterface $streamFactory,
         private readonly string $baseUrl,
         private readonly string $clientId,
-        #[\SensitiveParameter] private readonly string $clientSecret,
+        #[\SensitiveParameter]
+        private readonly string $clientSecret,
     ) {}
 
     public function __debugInfo(): array
@@ -31,6 +32,10 @@ final class Transport
         return ['clientSecret' => '***'] + get_object_vars($this);
     }
 
+    /**
+     * @param array<string, mixed> $body
+     * @return array<mixed>
+     */
     public function post(string $path, array $body): array
     {
         $request = $this->buildRequest('POST', $path)
@@ -40,6 +45,7 @@ final class Transport
         return $this->send($request);
     }
 
+    /** @return array<mixed> */
     public function get(string $path): array
     {
         return $this->send($this->buildRequest('GET', $path));
@@ -55,6 +61,7 @@ final class Transport
         $this->send($this->buildRequest('DELETE', $path));
     }
 
+    /** @return array<mixed> */
     public function postMultipart(string $path, string $data, string $filename, string $mimeType): array
     {
         $boundary = bin2hex(random_bytes(16));
@@ -82,6 +89,7 @@ final class Transport
             ->withHeader('Authorization', 'Basic ' . base64_encode("{$this->clientId}:{$this->clientSecret}"));
     }
 
+    /** @return array<mixed> */
     private function send(RequestInterface $request): array
     {
         $body = $this->sendRaw($request);
@@ -112,7 +120,7 @@ final class Transport
 
         if ($statusCode < 200 || $statusCode >= 300) {
             $decoded = json_decode($body, true);
-            $message = is_array($decoded) && isset($decoded['message']) ? (string) $decoded['message'] : $body;
+            $message = is_array($decoded) && is_string($decoded['message'] ?? null) ? $decoded['message'] : $body;
             throw new IdentisureException($statusCode, $message);
         }
 

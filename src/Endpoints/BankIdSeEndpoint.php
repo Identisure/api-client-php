@@ -20,8 +20,8 @@ use Identisure\Client\Models\BankIdSe\BankIdSePhoneAuthRequest;
 use Identisure\Client\Models\BankIdSe\BankIdSePhoneSignRequest;
 use Identisure\Client\Models\BankIdSe\BankIdSePhoneStatus;
 use Identisure\Client\Models\BankIdSe\BankIdSeSignRequest;
-use Identisure\Client\Models\BankIdSe\BankIdSeStepUp;
 use Identisure\Client\Models\BankIdSe\BankIdSeStatus;
+use Identisure\Client\Models\BankIdSe\BankIdSeStepUp;
 use Identisure\Client\Models\BankIdSe\BankIdSeUnknown;
 use Identisure\Client\Models\BankIdSe\BankIdSeVerifyRequest;
 use Identisure\Client\Models\BankIdSe\BankIdSeVerifyResponse;
@@ -146,11 +146,13 @@ final class BankIdSeEndpoint
         }
     }
 
+    /** @return array<string, mixed> */
     private static function serialize(object $req): array
     {
         return array_filter(get_object_vars($req), fn($v) => $v !== null);
     }
 
+    /** @param array<mixed> $d */
     private static function parseStatus(array $d): BankIdSeStatus
     {
         return match ($d['status']) {
@@ -194,6 +196,7 @@ final class BankIdSeEndpoint
         };
     }
 
+    /** @param array<mixed> $d */
     private static function parsePhoneStatus(array $d): BankIdSePhoneStatus
     {
         return match ($d['status']) {
@@ -234,6 +237,7 @@ final class BankIdSeEndpoint
         };
     }
 
+    /** @param array<mixed> $d */
     private static function parseAgeStatus(array $d): AgeVerificationStatus
     {
         return match ($d['status']) {

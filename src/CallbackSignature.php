@@ -14,7 +14,8 @@ final class CallbackSignature
     public static function verify(
         string $body,
         string $signature,
-        #[\SensitiveParameter] string $secret,
+        #[\SensitiveParameter]
+        string $secret,
     ): bool {
         $expected = base64_encode(hash_hmac('sha256', $body, $secret, true));
 

@@ -75,6 +75,7 @@ final class E2eTest extends TestCase
             ->build();
     }
 
+    /** @return array<string, list<mixed>> */
     public static function providers(): array
     {
         return [
@@ -93,6 +94,7 @@ final class E2eTest extends TestCase
         ];
     }
 
+    /** @return array<string, list<mixed>> */
     public static function signProviders(): array
     {
         return [
@@ -107,10 +109,22 @@ final class E2eTest extends TestCase
         ];
     }
 
+    /**
+     * @param class-string $pending
+     * @param class-string $completed
+     * @param class-string $failed
+     * @param class-string $unknown
+     */
     #[DataProvider('providers')]
     public function testAuthCompleted(
-        string $dir, string $endpoint, string $segment, \Closure $request,
-        string $pending, string $completed, string $failed, string $unknown,
+        string $dir,
+        string $endpoint,
+        string $segment,
+        \Closure $request,
+        string $pending,
+        string $completed,
+        string $failed,
+        string $unknown,
     ): void {
         $result = $this->runAuth($dir, $endpoint, $segment, $request, $pending, 'auth_completed');
 
@@ -118,32 +132,61 @@ final class E2eTest extends TestCase
         self::assertMatchesFixture(self::json("$dir/auth_completed.json"), $result);
     }
 
+    /**
+     * @param class-string $pending
+     * @param class-string $completed
+     * @param class-string $failed
+     * @param class-string $unknown
+     */
     #[DataProvider('providers')]
     public function testAuthFailed(
-        string $dir, string $endpoint, string $segment, \Closure $request,
-        string $pending, string $completed, string $failed, string $unknown,
+        string $dir,
+        string $endpoint,
+        string $segment,
+        \Closure $request,
+        string $pending,
+        string $completed,
+        string $failed,
+        string $unknown,
     ): void {
         $result = $this->runAuth($dir, $endpoint, $segment, $request, $pending, 'auth_failed');
 
         self::assertInstanceOf($failed, $result);
-        self::assertSame('CANCELLED', $result->error);
+        self::assertSame('CANCELLED', get_object_vars($result)['error'] ?? null);
         self::assertMatchesFixture(self::json("$dir/auth_failed.json"), $result);
     }
 
+    /**
+     * @param class-string $pending
+     * @param class-string $completed
+     * @param class-string $failed
+     * @param class-string $unknown
+     */
     #[DataProvider('providers')]
     public function testAuthUnknown(
-        string $dir, string $endpoint, string $segment, \Closure $request,
-        string $pending, string $completed, string $failed, string $unknown,
+        string $dir,
+        string $endpoint,
+        string $segment,
+        \Closure $request,
+        string $pending,
+        string $completed,
+        string $failed,
+        string $unknown,
     ): void {
         $result = $this->runAuth($dir, $endpoint, $segment, $request, $pending, 'auth_unknown');
 
         self::assertInstanceOf($unknown, $result);
-        self::assertSame('SOMETHING_NEW', $result->status);
+        self::assertSame('SOMETHING_NEW', get_object_vars($result)['status'] ?? null);
     }
 
+    /** @param class-string $completed */
     #[DataProvider('signProviders')]
     public function testSignCompleted(
-        string $dir, string $endpoint, string $segment, \Closure $request, string $completed,
+        string $dir,
+        string $endpoint,
+        string $segment,
+        \Closure $request,
+        string $completed,
     ): void {
         $this->http->enqueue(201, self::raw("$dir/auth_pending.json"));
         $this->http->enqueue(200, self::raw("$dir/auth_pending.json"));
@@ -195,6 +238,7 @@ final class E2eTest extends TestCase
         self::assertMatchesFixture(self::json('bankid_se/verify.json'), $result);
     }
 
+    /** @return array<string, list<mixed>> */
     public static function ageVerificationOutcomes(): array
     {
         return [
@@ -204,6 +248,7 @@ final class E2eTest extends TestCase
         ];
     }
 
+    /** @param class-string $class */
     #[DataProvider('ageVerificationOutcomes')]
     public function testBankIdSeAgeVerification(string $outcome, string $class): void
     {
@@ -255,8 +300,14 @@ final class E2eTest extends TestCase
         }
     }
 
+    /** @param class-string $pending */
     private function runAuth(
-        string $dir, string $endpoint, string $segment, \Closure $request, string $pending, string $outcome,
+        string $dir,
+        string $endpoint,
+        string $segment,
+        \Closure $request,
+        string $pending,
+        string $outcome,
     ): object {
         $this->http->enqueue(201, self::raw("$dir/auth_pending.json"));
         $this->http->enqueue(200, self::raw("$dir/auth_pending.json"));
@@ -266,7 +317,7 @@ final class E2eTest extends TestCase
         $session = $api->auth($request());
         self::assertInstanceOf($pending, $session);
         self::assertMatchesFixture(self::json("$dir/auth_pending.json"), $session);
-        $result = $api->waitForAuth($session->id, new PollOptions(interval: 0));
+        $result = $api->waitForAuth(get_object_vars($session)['id'], new PollOptions(interval: 0));
 
         $id = self::json("$dir/auth_pending.json")['id'];
         $this->assertRequests([
@@ -290,6 +341,7 @@ final class E2eTest extends TestCase
         }
     }
 
+    /** @param array<mixed> $fixture */
     private static function assertMatchesFixture(array $fixture, object $actual): void
     {
         unset($fixture['status']);
@@ -323,6 +375,7 @@ final class E2eTest extends TestCase
         return $contents;
     }
 
+    /** @return array<mixed> */
     private static function json(string $name): array
     {
         return json_decode(self::raw($name), true, flags: JSON_THROW_ON_ERROR);
