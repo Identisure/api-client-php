@@ -2,23 +2,23 @@
 
 declare(strict_types=1);
 
-namespace Idkollen\Client\Endpoints;
+namespace Identisure\Client\Endpoints;
 
-use Idkollen\Client\Models\AgeVerification\AgeVerificationCompleted;
-use Idkollen\Client\Models\AgeVerification\AgeVerificationFailed;
-use Idkollen\Client\Models\AgeVerification\AgeVerificationPending;
-use Idkollen\Client\Models\AgeVerification\AgeVerificationRequest;
-use Idkollen\Client\Models\AgeVerification\AgeVerificationStatus;
-use Idkollen\Client\Models\AgeVerification\AgeVerificationUnknown;
-use Idkollen\Client\Models\Ftn\FtnAuthRequest;
-use Idkollen\Client\Models\Ftn\FtnCompleted;
-use Idkollen\Client\Models\Ftn\FtnFailed;
-use Idkollen\Client\Models\Ftn\FtnPending;
-use Idkollen\Client\Models\Ftn\FtnStatus;
-use Idkollen\Client\Models\Ftn\FtnUnknown;
-use Idkollen\Client\PollOptions;
-use Idkollen\Client\Transport;
-use Idkollen\Client\WaitException;
+use Identisure\Client\Models\AgeVerification\AgeVerificationCompleted;
+use Identisure\Client\Models\AgeVerification\AgeVerificationFailed;
+use Identisure\Client\Models\AgeVerification\AgeVerificationPending;
+use Identisure\Client\Models\AgeVerification\AgeVerificationRequest;
+use Identisure\Client\Models\AgeVerification\AgeVerificationStatus;
+use Identisure\Client\Models\AgeVerification\AgeVerificationUnknown;
+use Identisure\Client\Models\Ftn\FtnAuthRequest;
+use Identisure\Client\Models\Ftn\FtnCompleted;
+use Identisure\Client\Models\Ftn\FtnFailed;
+use Identisure\Client\Models\Ftn\FtnPending;
+use Identisure\Client\Models\Ftn\FtnStatus;
+use Identisure\Client\Models\Ftn\FtnUnknown;
+use Identisure\Client\PollOptions;
+use Identisure\Client\Transport;
+use Identisure\Client\WaitException;
 
 final class FtnEndpoint
 {

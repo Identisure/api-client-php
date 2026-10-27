@@ -2,32 +2,32 @@
 
 declare(strict_types=1);
 
-namespace Idkollen\Client\Endpoints;
+namespace Identisure\Client\Endpoints;
 
-use Idkollen\Client\Models\AgeVerification\AgeVerificationCompleted;
-use Idkollen\Client\Models\AgeVerification\AgeVerificationFailed;
-use Idkollen\Client\Models\AgeVerification\AgeVerificationPending;
-use Idkollen\Client\Models\AgeVerification\AgeVerificationRequest;
-use Idkollen\Client\Models\AgeVerification\AgeVerificationStatus;
-use Idkollen\Client\Models\AgeVerification\AgeVerificationUnknown;
-use Idkollen\Client\Models\BankIdSe\BankIdSeAuthRequest;
-use Idkollen\Client\Models\BankIdSe\BankIdSeCompleted;
-use Idkollen\Client\Models\BankIdSe\BankIdSeDevice;
-use Idkollen\Client\Models\BankIdSe\BankIdSeFailed;
-use Idkollen\Client\Models\BankIdSe\BankIdSePending;
-use Idkollen\Client\Models\BankIdSe\BankIdSePendingPhone;
-use Idkollen\Client\Models\BankIdSe\BankIdSePhoneAuthRequest;
-use Idkollen\Client\Models\BankIdSe\BankIdSePhoneSignRequest;
-use Idkollen\Client\Models\BankIdSe\BankIdSePhoneStatus;
-use Idkollen\Client\Models\BankIdSe\BankIdSeSignRequest;
-use Idkollen\Client\Models\BankIdSe\BankIdSeStepUp;
-use Idkollen\Client\Models\BankIdSe\BankIdSeStatus;
-use Idkollen\Client\Models\BankIdSe\BankIdSeUnknown;
-use Idkollen\Client\Models\BankIdSe\BankIdSeVerifyRequest;
-use Idkollen\Client\Models\BankIdSe\BankIdSeVerifyResponse;
-use Idkollen\Client\PollOptions;
-use Idkollen\Client\Transport;
-use Idkollen\Client\WaitException;
+use Identisure\Client\Models\AgeVerification\AgeVerificationCompleted;
+use Identisure\Client\Models\AgeVerification\AgeVerificationFailed;
+use Identisure\Client\Models\AgeVerification\AgeVerificationPending;
+use Identisure\Client\Models\AgeVerification\AgeVerificationRequest;
+use Identisure\Client\Models\AgeVerification\AgeVerificationStatus;
+use Identisure\Client\Models\AgeVerification\AgeVerificationUnknown;
+use Identisure\Client\Models\BankIdSe\BankIdSeAuthRequest;
+use Identisure\Client\Models\BankIdSe\BankIdSeCompleted;
+use Identisure\Client\Models\BankIdSe\BankIdSeDevice;
+use Identisure\Client\Models\BankIdSe\BankIdSeFailed;
+use Identisure\Client\Models\BankIdSe\BankIdSePending;
+use Identisure\Client\Models\BankIdSe\BankIdSePendingPhone;
+use Identisure\Client\Models\BankIdSe\BankIdSePhoneAuthRequest;
+use Identisure\Client\Models\BankIdSe\BankIdSePhoneSignRequest;
+use Identisure\Client\Models\BankIdSe\BankIdSePhoneStatus;
+use Identisure\Client\Models\BankIdSe\BankIdSeSignRequest;
+use Identisure\Client\Models\BankIdSe\BankIdSeStepUp;
+use Identisure\Client\Models\BankIdSe\BankIdSeStatus;
+use Identisure\Client\Models\BankIdSe\BankIdSeUnknown;
+use Identisure\Client\Models\BankIdSe\BankIdSeVerifyRequest;
+use Identisure\Client\Models\BankIdSe\BankIdSeVerifyResponse;
+use Identisure\Client\PollOptions;
+use Identisure\Client\Transport;
+use Identisure\Client\WaitException;
 
 final class BankIdSeEndpoint
 {

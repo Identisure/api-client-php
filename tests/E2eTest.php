@@ -2,57 +2,57 @@
 
 declare(strict_types=1);
 
-namespace Idkollen\Client\Tests;
+namespace Identisure\Client\Tests;
 
 use GuzzleHttp\Psr7\HttpFactory;
-use Idkollen\Client\IdkollenClient;
-use Idkollen\Client\IdkollenClientBuilder;
-use Idkollen\Client\IdkollenException;
-use Idkollen\Client\Models\AgeVerification\AgeVerificationCompleted;
-use Idkollen\Client\Models\AgeVerification\AgeVerificationFailed;
-use Idkollen\Client\Models\AgeVerification\AgeVerificationPending;
-use Idkollen\Client\Models\AgeVerification\AgeVerificationRequest;
-use Idkollen\Client\Models\AgeVerification\AgeVerificationUnknown;
-use Idkollen\Client\Models\BankIdNo\BankIdNoAuthRequest;
-use Idkollen\Client\Models\BankIdNo\BankIdNoCompleted;
-use Idkollen\Client\Models\BankIdNo\BankIdNoFailed;
-use Idkollen\Client\Models\BankIdNo\BankIdNoPending;
-use Idkollen\Client\Models\BankIdNo\BankIdNoSignRequest;
-use Idkollen\Client\Models\BankIdNo\BankIdNoUnknown;
-use Idkollen\Client\Models\BankIdSe\BankIdSeAuthRequest;
-use Idkollen\Client\Models\BankIdSe\BankIdSeCompleted;
-use Idkollen\Client\Models\BankIdSe\BankIdSeFailed;
-use Idkollen\Client\Models\BankIdSe\BankIdSePending;
-use Idkollen\Client\Models\BankIdSe\BankIdSePendingPhone;
-use Idkollen\Client\Models\BankIdSe\BankIdSePhoneAuthRequest;
-use Idkollen\Client\Models\BankIdSe\BankIdSeSignRequest;
-use Idkollen\Client\Models\BankIdSe\BankIdSeUnknown;
-use Idkollen\Client\Models\BankIdSe\BankIdSeVerifyRequest;
-use Idkollen\Client\Models\BankIdSe\BankIdSeVerifyResponse;
-use Idkollen\Client\Models\Document\DocumentUploadResponse;
-use Idkollen\Client\Models\Freja\FrejaAuthRequest;
-use Idkollen\Client\Models\Freja\FrejaCompleted;
-use Idkollen\Client\Models\Freja\FrejaFailed;
-use Idkollen\Client\Models\Freja\FrejaPending;
-use Idkollen\Client\Models\Freja\FrejaSignRequest;
-use Idkollen\Client\Models\Freja\FrejaUnknown;
-use Idkollen\Client\Models\Ftn\FtnAuthRequest;
-use Idkollen\Client\Models\Ftn\FtnCompleted;
-use Idkollen\Client\Models\Ftn\FtnFailed;
-use Idkollen\Client\Models\Ftn\FtnPending;
-use Idkollen\Client\Models\Ftn\FtnUnknown;
-use Idkollen\Client\Models\MitId\MitIdAuthRequest;
-use Idkollen\Client\Models\MitId\MitIdCompleted;
-use Idkollen\Client\Models\MitId\MitIdFailed;
-use Idkollen\Client\Models\MitId\MitIdPending;
-use Idkollen\Client\Models\MitId\MitIdSignRequest;
-use Idkollen\Client\Models\MitId\MitIdUnknown;
-use Idkollen\Client\Models\Vipps\VippsAuthRequest;
-use Idkollen\Client\Models\Vipps\VippsCompleted;
-use Idkollen\Client\Models\Vipps\VippsFailed;
-use Idkollen\Client\Models\Vipps\VippsPending;
-use Idkollen\Client\Models\Vipps\VippsUnknown;
-use Idkollen\Client\PollOptions;
+use Identisure\Client\IdentisureClient;
+use Identisure\Client\IdentisureClientBuilder;
+use Identisure\Client\IdentisureException;
+use Identisure\Client\Models\AgeVerification\AgeVerificationCompleted;
+use Identisure\Client\Models\AgeVerification\AgeVerificationFailed;
+use Identisure\Client\Models\AgeVerification\AgeVerificationPending;
+use Identisure\Client\Models\AgeVerification\AgeVerificationRequest;
+use Identisure\Client\Models\AgeVerification\AgeVerificationUnknown;
+use Identisure\Client\Models\BankIdNo\BankIdNoAuthRequest;
+use Identisure\Client\Models\BankIdNo\BankIdNoCompleted;
+use Identisure\Client\Models\BankIdNo\BankIdNoFailed;
+use Identisure\Client\Models\BankIdNo\BankIdNoPending;
+use Identisure\Client\Models\BankIdNo\BankIdNoSignRequest;
+use Identisure\Client\Models\BankIdNo\BankIdNoUnknown;
+use Identisure\Client\Models\BankIdSe\BankIdSeAuthRequest;
+use Identisure\Client\Models\BankIdSe\BankIdSeCompleted;
+use Identisure\Client\Models\BankIdSe\BankIdSeFailed;
+use Identisure\Client\Models\BankIdSe\BankIdSePending;
+use Identisure\Client\Models\BankIdSe\BankIdSePendingPhone;
+use Identisure\Client\Models\BankIdSe\BankIdSePhoneAuthRequest;
+use Identisure\Client\Models\BankIdSe\BankIdSeSignRequest;
+use Identisure\Client\Models\BankIdSe\BankIdSeUnknown;
+use Identisure\Client\Models\BankIdSe\BankIdSeVerifyRequest;
+use Identisure\Client\Models\BankIdSe\BankIdSeVerifyResponse;
+use Identisure\Client\Models\Document\DocumentUploadResponse;
+use Identisure\Client\Models\Freja\FrejaAuthRequest;
+use Identisure\Client\Models\Freja\FrejaCompleted;
+use Identisure\Client\Models\Freja\FrejaFailed;
+use Identisure\Client\Models\Freja\FrejaPending;
+use Identisure\Client\Models\Freja\FrejaSignRequest;
+use Identisure\Client\Models\Freja\FrejaUnknown;
+use Identisure\Client\Models\Ftn\FtnAuthRequest;
+use Identisure\Client\Models\Ftn\FtnCompleted;
+use Identisure\Client\Models\Ftn\FtnFailed;
+use Identisure\Client\Models\Ftn\FtnPending;
+use Identisure\Client\Models\Ftn\FtnUnknown;
+use Identisure\Client\Models\MitId\MitIdAuthRequest;
+use Identisure\Client\Models\MitId\MitIdCompleted;
+use Identisure\Client\Models\MitId\MitIdFailed;
+use Identisure\Client\Models\MitId\MitIdPending;
+use Identisure\Client\Models\MitId\MitIdSignRequest;
+use Identisure\Client\Models\MitId\MitIdUnknown;
+use Identisure\Client\Models\Vipps\VippsAuthRequest;
+use Identisure\Client\Models\Vipps\VippsCompleted;
+use Identisure\Client\Models\Vipps\VippsFailed;
+use Identisure\Client\Models\Vipps\VippsPending;
+use Identisure\Client\Models\Vipps\VippsUnknown;
+use Identisure\Client\PollOptions;
 use PHPUnit\Framework\Attributes\DataProvider;
 use PHPUnit\Framework\TestCase;
 
@@ -61,13 +61,13 @@ final class E2eTest extends TestCase
     private const FIXTURES = __DIR__ . '/../../fixtures/';
 
     private MockHttpClient $http;
-    private IdkollenClient $client;
+    private IdentisureClient $client;
 
     protected function setUp(): void
     {
         $this->http = new MockHttpClient();
         $factory = new HttpFactory();
-        $this->client = (new IdkollenClientBuilder('cid', 'sec'))
+        $this->client = (new IdentisureClientBuilder('cid', 'sec'))
             ->baseUrl('https://x.test')
             ->httpClient($this->http)
             ->requestFactory($factory)
@@ -248,8 +248,8 @@ final class E2eTest extends TestCase
 
         try {
             $this->client->ftn()->auth(new FtnAuthRequest());
-            self::fail('Expected IdkollenException');
-        } catch (IdkollenException $e) {
+            self::fail('Expected IdentisureException');
+        } catch (IdentisureException $e) {
             self::assertSame(400, $e->statusCode);
             self::assertStringContainsString(self::json('error.json')['message'], $e->getMessage());
         }

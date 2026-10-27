@@ -2,13 +2,13 @@
 
 declare(strict_types=1);
 
-namespace Idkollen\Client;
+namespace Identisure\Client;
 
 use Psr\Http\Client\ClientInterface;
 use Psr\Http\Message\RequestFactoryInterface;
 use Psr\Http\Message\StreamFactoryInterface;
 
-final class IdkollenClientBuilder
+final class IdentisureClientBuilder
 {
     private Environment $environment = Environment::Production;
     private ?string $baseUrl = null;
@@ -69,7 +69,7 @@ final class IdkollenClientBuilder
         return $this;
     }
 
-    public function build(): IdkollenClient
+    public function build(): IdentisureClient
     {
         $httpClient = $this->httpClient ?? self::discoverHttpClient($this->timeout);
         $requestFactory = $this->requestFactory ?? self::discoverHttpFactory();
@@ -85,7 +85,7 @@ final class IdkollenClientBuilder
             clientSecret: $this->clientSecret,
         );
 
-        return new IdkollenClient($transport);
+        return new IdentisureClient($transport);
     }
 
     private static function discoverHttpClient(float $timeout): ClientInterface

@@ -2,18 +2,18 @@
 
 declare(strict_types=1);
 
-namespace Idkollen\Client\Endpoints;
+namespace Identisure\Client\Endpoints;
 
-use Idkollen\Client\Models\Vipps\VippsAuthRequest;
-use Idkollen\Client\Models\Vipps\VippsBackchannelAuthRequest;
-use Idkollen\Client\Models\Vipps\VippsCompleted;
-use Idkollen\Client\Models\Vipps\VippsFailed;
-use Idkollen\Client\Models\Vipps\VippsPending;
-use Idkollen\Client\Models\Vipps\VippsStatus;
-use Idkollen\Client\Models\Vipps\VippsUnknown;
-use Idkollen\Client\PollOptions;
-use Idkollen\Client\Transport;
-use Idkollen\Client\WaitException;
+use Identisure\Client\Models\Vipps\VippsAuthRequest;
+use Identisure\Client\Models\Vipps\VippsBackchannelAuthRequest;
+use Identisure\Client\Models\Vipps\VippsCompleted;
+use Identisure\Client\Models\Vipps\VippsFailed;
+use Identisure\Client\Models\Vipps\VippsPending;
+use Identisure\Client\Models\Vipps\VippsStatus;
+use Identisure\Client\Models\Vipps\VippsUnknown;
+use Identisure\Client\PollOptions;
+use Identisure\Client\Transport;
+use Identisure\Client\WaitException;
 
 final class VippsEndpoint
 {

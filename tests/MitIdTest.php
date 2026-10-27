@@ -2,14 +2,14 @@
 
 declare(strict_types=1);
 
-namespace Idkollen\Client\Tests;
+namespace Identisure\Client\Tests;
 
 use GuzzleHttp\Psr7\HttpFactory;
-use Idkollen\Client\Endpoints\MitIdEndpoint;
-use Idkollen\Client\Models\MitId\MitIdAuthRequest;
-use Idkollen\Client\Models\MitId\MitIdCompleted;
-use Idkollen\Client\Models\MitId\MitIdPending;
-use Idkollen\Client\Transport;
+use Identisure\Client\Endpoints\MitIdEndpoint;
+use Identisure\Client\Models\MitId\MitIdAuthRequest;
+use Identisure\Client\Models\MitId\MitIdCompleted;
+use Identisure\Client\Models\MitId\MitIdPending;
+use Identisure\Client\Transport;
 use PHPUnit\Framework\TestCase;
 
 final class MitIdTest extends TestCase

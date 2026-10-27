@@ -2,26 +2,26 @@
 
 declare(strict_types=1);
 
-namespace Idkollen\Client\Endpoints;
+namespace Identisure\Client\Endpoints;
 
-use Idkollen\Client\Models\AgeVerification\AgeVerificationCompleted;
-use Idkollen\Client\Models\AgeVerification\AgeVerificationFailed;
-use Idkollen\Client\Models\AgeVerification\AgeVerificationPending;
-use Idkollen\Client\Models\AgeVerification\AgeVerificationRequest;
-use Idkollen\Client\Models\AgeVerification\AgeVerificationStatus;
-use Idkollen\Client\Models\AgeVerification\AgeVerificationUnknown;
-use Idkollen\Client\Models\MitId\MitIdAuthRequest;
-use Idkollen\Client\Models\MitId\MitIdBackchannelAuthRequest;
-use Idkollen\Client\Models\MitId\MitIdCompleted;
-use Idkollen\Client\Models\MitId\MitIdFailed;
-use Idkollen\Client\Models\MitId\MitIdPending;
-use Idkollen\Client\Models\MitId\MitIdSignRequest;
-use Idkollen\Client\Models\MitId\MitIdSignResult;
-use Idkollen\Client\Models\MitId\MitIdStatus;
-use Idkollen\Client\Models\MitId\MitIdUnknown;
-use Idkollen\Client\PollOptions;
-use Idkollen\Client\Transport;
-use Idkollen\Client\WaitException;
+use Identisure\Client\Models\AgeVerification\AgeVerificationCompleted;
+use Identisure\Client\Models\AgeVerification\AgeVerificationFailed;
+use Identisure\Client\Models\AgeVerification\AgeVerificationPending;
+use Identisure\Client\Models\AgeVerification\AgeVerificationRequest;
+use Identisure\Client\Models\AgeVerification\AgeVerificationStatus;
+use Identisure\Client\Models\AgeVerification\AgeVerificationUnknown;
+use Identisure\Client\Models\MitId\MitIdAuthRequest;
+use Identisure\Client\Models\MitId\MitIdBackchannelAuthRequest;
+use Identisure\Client\Models\MitId\MitIdCompleted;
+use Identisure\Client\Models\MitId\MitIdFailed;
+use Identisure\Client\Models\MitId\MitIdPending;
+use Identisure\Client\Models\MitId\MitIdSignRequest;
+use Identisure\Client\Models\MitId\MitIdSignResult;
+use Identisure\Client\Models\MitId\MitIdStatus;
+use Identisure\Client\Models\MitId\MitIdUnknown;
+use Identisure\Client\PollOptions;
+use Identisure\Client\Transport;
+use Identisure\Client\WaitException;
 
 final class MitIdEndpoint
 {

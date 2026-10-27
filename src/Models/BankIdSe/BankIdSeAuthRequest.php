@@ -2,7 +2,7 @@
 
 declare(strict_types=1);
 
-namespace Idkollen\Client\Models\BankIdSe;
+namespace Identisure\Client\Models\BankIdSe;
 
 readonly class BankIdSeAuthRequest
 {

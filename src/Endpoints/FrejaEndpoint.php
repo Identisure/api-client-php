@@ -2,26 +2,26 @@
 
 declare(strict_types=1);
 
-namespace Idkollen\Client\Endpoints;
+namespace Identisure\Client\Endpoints;
 
-use Idkollen\Client\Models\AgeVerification\AgeVerificationCompleted;
-use Idkollen\Client\Models\AgeVerification\AgeVerificationFailed;
-use Idkollen\Client\Models\AgeVerification\AgeVerificationPending;
-use Idkollen\Client\Models\AgeVerification\AgeVerificationRequest;
-use Idkollen\Client\Models\AgeVerification\AgeVerificationStatus;
-use Idkollen\Client\Models\AgeVerification\AgeVerificationUnknown;
-use Idkollen\Client\Models\Freja\FrejaAuthRequest;
-use Idkollen\Client\Models\Freja\FrejaBackchannelAuthRequest;
-use Idkollen\Client\Models\Freja\FrejaBackchannelSignRequest;
-use Idkollen\Client\Models\Freja\FrejaCompleted;
-use Idkollen\Client\Models\Freja\FrejaFailed;
-use Idkollen\Client\Models\Freja\FrejaPending;
-use Idkollen\Client\Models\Freja\FrejaSignRequest;
-use Idkollen\Client\Models\Freja\FrejaStatus;
-use Idkollen\Client\Models\Freja\FrejaUnknown;
-use Idkollen\Client\PollOptions;
-use Idkollen\Client\Transport;
-use Idkollen\Client\WaitException;
+use Identisure\Client\Models\AgeVerification\AgeVerificationCompleted;
+use Identisure\Client\Models\AgeVerification\AgeVerificationFailed;
+use Identisure\Client\Models\AgeVerification\AgeVerificationPending;
+use Identisure\Client\Models\AgeVerification\AgeVerificationRequest;
+use Identisure\Client\Models\AgeVerification\AgeVerificationStatus;
+use Identisure\Client\Models\AgeVerification\AgeVerificationUnknown;
+use Identisure\Client\Models\Freja\FrejaAuthRequest;
+use Identisure\Client\Models\Freja\FrejaBackchannelAuthRequest;
+use Identisure\Client\Models\Freja\FrejaBackchannelSignRequest;
+use Identisure\Client\Models\Freja\FrejaCompleted;
+use Identisure\Client\Models\Freja\FrejaFailed;
+use Identisure\Client\Models\Freja\FrejaPending;
+use Identisure\Client\Models\Freja\FrejaSignRequest;
+use Identisure\Client\Models\Freja\FrejaStatus;
+use Identisure\Client\Models\Freja\FrejaUnknown;
+use Identisure\Client\PollOptions;
+use Identisure\Client\Transport;
+use Identisure\Client\WaitException;
 
 final class FrejaEndpoint
 {

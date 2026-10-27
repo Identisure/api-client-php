@@ -2,27 +2,27 @@
 
 declare(strict_types=1);
 
-namespace Idkollen\Client\Endpoints;
+namespace Identisure\Client\Endpoints;
 
-use Idkollen\Client\Models\AgeVerification\AgeVerificationCompleted;
-use Idkollen\Client\Models\AgeVerification\AgeVerificationFailed;
-use Idkollen\Client\Models\AgeVerification\AgeVerificationPending;
-use Idkollen\Client\Models\AgeVerification\AgeVerificationRequest;
-use Idkollen\Client\Models\AgeVerification\AgeVerificationStatus;
-use Idkollen\Client\Models\AgeVerification\AgeVerificationUnknown;
-use Idkollen\Client\Models\BankIdNo\BankIdNoAuthRequest;
-use Idkollen\Client\Models\BankIdNo\BankIdNoBackchannelAuthRequest;
-use Idkollen\Client\Models\BankIdNo\BankIdNoCompleted;
-use Idkollen\Client\Models\BankIdNo\BankIdNoFailed;
-use Idkollen\Client\Models\BankIdNo\BankIdNoPending;
-use Idkollen\Client\Models\BankIdNo\BankIdNoSignRequest;
-use Idkollen\Client\Models\BankIdNo\BankIdNoSignResult;
-use Idkollen\Client\Models\BankIdNo\BankIdNoSignedDocument;
-use Idkollen\Client\Models\BankIdNo\BankIdNoStatus;
-use Idkollen\Client\Models\BankIdNo\BankIdNoUnknown;
-use Idkollen\Client\PollOptions;
-use Idkollen\Client\Transport;
-use Idkollen\Client\WaitException;
+use Identisure\Client\Models\AgeVerification\AgeVerificationCompleted;
+use Identisure\Client\Models\AgeVerification\AgeVerificationFailed;
+use Identisure\Client\Models\AgeVerification\AgeVerificationPending;
+use Identisure\Client\Models\AgeVerification\AgeVerificationRequest;
+use Identisure\Client\Models\AgeVerification\AgeVerificationStatus;
+use Identisure\Client\Models\AgeVerification\AgeVerificationUnknown;
+use Identisure\Client\Models\BankIdNo\BankIdNoAuthRequest;
+use Identisure\Client\Models\BankIdNo\BankIdNoBackchannelAuthRequest;
+use Identisure\Client\Models\BankIdNo\BankIdNoCompleted;
+use Identisure\Client\Models\BankIdNo\BankIdNoFailed;
+use Identisure\Client\Models\BankIdNo\BankIdNoPending;
+use Identisure\Client\Models\BankIdNo\BankIdNoSignRequest;
+use Identisure\Client\Models\BankIdNo\BankIdNoSignResult;
+use Identisure\Client\Models\BankIdNo\BankIdNoSignedDocument;
+use Identisure\Client\Models\BankIdNo\BankIdNoStatus;
+use Identisure\Client\Models\BankIdNo\BankIdNoUnknown;
+use Identisure\Client\PollOptions;
+use Identisure\Client\Transport;
+use Identisure\Client\WaitException;
 
 final class BankIdNoEndpoint
 {

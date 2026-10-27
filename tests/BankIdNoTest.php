@@ -2,14 +2,14 @@
 
 declare(strict_types=1);
 
-namespace Idkollen\Client\Tests;
+namespace Identisure\Client\Tests;
 
 use GuzzleHttp\Psr7\HttpFactory;
-use Idkollen\Client\Endpoints\BankIdNoEndpoint;
-use Idkollen\Client\Models\BankIdNo\BankIdNoAuthRequest;
-use Idkollen\Client\Models\BankIdNo\BankIdNoCompleted;
-use Idkollen\Client\Models\BankIdNo\BankIdNoPending;
-use Idkollen\Client\Transport;
+use Identisure\Client\Endpoints\BankIdNoEndpoint;
+use Identisure\Client\Models\BankIdNo\BankIdNoAuthRequest;
+use Identisure\Client\Models\BankIdNo\BankIdNoCompleted;
+use Identisure\Client\Models\BankIdNo\BankIdNoPending;
+use Identisure\Client\Transport;
 use PHPUnit\Framework\TestCase;
 
 final class BankIdNoTest extends TestCase

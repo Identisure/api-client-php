@@ -2,7 +2,7 @@
 
 declare(strict_types=1);
 
-namespace Idkollen\Client;
+namespace Identisure\Client;
 
 enum Environment
 {
@@ -12,8 +12,8 @@ enum Environment
     public function baseUrl(): string
     {
         return match ($this) {
-            self::Production => 'https://api.idkollen.se',
-            self::Staging => 'https://stgapi.idkollen.se',
+            self::Production => 'https://api.identisure.com',
+            self::Staging => 'https://stgapi.identisure.com',
         };
     }
 }

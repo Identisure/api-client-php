@@ -2,7 +2,7 @@
 
 declare(strict_types=1);
 
-namespace Idkollen\Client\Models\Vipps;
+namespace Identisure\Client\Models\Vipps;
 
 readonly class VippsCompleted implements VippsStatus
 {

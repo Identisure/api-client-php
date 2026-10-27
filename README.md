@@ -1,21 +1,21 @@
 <img align="left" height="100" style="margin-right: 10px;" src="../img/icon.png">
 
-# IDkollen PHP Client
+# Identisure PHP Client
 
 [![Packagist version][packagist-image]][packagist-url]
 [![MIT license][license-image]][license-url]
 
-[packagist-image]: https://img.shields.io/packagist/v/idkollen/client?style=flat-square
-[packagist-url]: https://packagist.org/packages/idkollen/client
+[packagist-image]: https://img.shields.io/packagist/v/identisure/client?style=flat-square
+[packagist-url]: https://packagist.org/packages/identisure/client
 [license-image]: https://img.shields.io/badge/license-MIT-blue?style=flat-square
 [license-url]: https://opensource.org/license/mit
 
-API client for the [IDkollen](https://developers.idkollen.se) REST API.
+API client for the [Identisure](https://developers.identisure.com) REST API.
 
 ## Installation
 
 ```sh
-composer require idkollen/client
+composer require identisure/client
 ```
 
 A PSR-18 HTTP client is required. The client auto-discovers
@@ -32,14 +32,14 @@ Alternatively, inject any PSR-18 client via the builder.
 ```php
 <?php
 
-use Idkollen\Client\Environment;
-use Idkollen\Client\IdkollenClientBuilder;
-use Idkollen\Client\Models\BankIdSe\BankIdSeAuthRequest;
-use Idkollen\Client\Models\BankIdSe\BankIdSeCompleted;
-use Idkollen\Client\Models\BankIdSe\BankIdSeFailed;
-use Idkollen\Client\Models\BankIdSe\BankIdSePending;
+use Identisure\Client\Environment;
+use Identisure\Client\IdentisureClientBuilder;
+use Identisure\Client\Models\BankIdSe\BankIdSeAuthRequest;
+use Identisure\Client\Models\BankIdSe\BankIdSeCompleted;
+use Identisure\Client\Models\BankIdSe\BankIdSeFailed;
+use Identisure\Client\Models\BankIdSe\BankIdSePending;
 
-$client = (new IdkollenClientBuilder('client_id', 'client_secret'))
+$client = (new IdentisureClientBuilder('client_id', 'client_secret'))
     ->environment(Environment::Staging)
     ->build();
 
@@ -61,7 +61,7 @@ if ($result instanceof BankIdSeCompleted) {
 Pass the raw request body exactly as received, before parsing it.
 
 ```php
-use Idkollen\Client\CallbackSignature;
+use Identisure\Client\CallbackSignature;
 
 $valid = CallbackSignature::verify($rawBody, $request->getHeaderLine('X-Signature-SHA256'), $hmacSecret);
 ```

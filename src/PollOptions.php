@@ -2,7 +2,7 @@
 
 declare(strict_types=1);
 
-namespace Idkollen\Client;
+namespace Identisure\Client;
 
 readonly class PollOptions
 {

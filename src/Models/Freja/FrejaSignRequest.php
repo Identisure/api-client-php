@@ -2,7 +2,7 @@
 
 declare(strict_types=1);
 
-namespace Idkollen\Client\Models\Freja;
+namespace Identisure\Client\Models\Freja;
 
 readonly class FrejaSignRequest
 {

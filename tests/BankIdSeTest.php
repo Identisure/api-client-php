@@ -2,18 +2,18 @@
 
 declare(strict_types=1);
 
-namespace Idkollen\Client\Tests;
+namespace Identisure\Client\Tests;
 
 use GuzzleHttp\Psr7\HttpFactory;
-use Idkollen\Client\Endpoints\BankIdSeEndpoint;
-use Idkollen\Client\Models\BankIdSe\BankIdSeAuthRequest;
-use Idkollen\Client\Models\BankIdSe\BankIdSeCompleted;
-use Idkollen\Client\Models\BankIdSe\BankIdSeFailed;
-use Idkollen\Client\Models\BankIdSe\BankIdSePending;
-use Idkollen\Client\Models\BankIdSe\BankIdSePendingPhone;
-use Idkollen\Client\Models\BankIdSe\BankIdSePhoneAuthRequest;
-use Idkollen\Client\Models\BankIdSe\BankIdSeVerifyRequest;
-use Idkollen\Client\Transport;
+use Identisure\Client\Endpoints\BankIdSeEndpoint;
+use Identisure\Client\Models\BankIdSe\BankIdSeAuthRequest;
+use Identisure\Client\Models\BankIdSe\BankIdSeCompleted;
+use Identisure\Client\Models\BankIdSe\BankIdSeFailed;
+use Identisure\Client\Models\BankIdSe\BankIdSePending;
+use Identisure\Client\Models\BankIdSe\BankIdSePendingPhone;
+use Identisure\Client\Models\BankIdSe\BankIdSePhoneAuthRequest;
+use Identisure\Client\Models\BankIdSe\BankIdSeVerifyRequest;
+use Identisure\Client\Transport;
 use PHPUnit\Framework\TestCase;
 
 final class BankIdSeTest extends TestCase

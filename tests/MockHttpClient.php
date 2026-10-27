@@ -2,7 +2,7 @@
 
 declare(strict_types=1);
 
-namespace Idkollen\Client\Tests;
+namespace Identisure\Client\Tests;
 
 use GuzzleHttp\Psr7\Response;
 use Psr\Http\Client\ClientInterface;

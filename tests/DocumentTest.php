@@ -2,11 +2,11 @@
 
 declare(strict_types=1);
 
-namespace Idkollen\Client\Tests;
+namespace Identisure\Client\Tests;
 
 use GuzzleHttp\Psr7\HttpFactory;
-use Idkollen\Client\Endpoints\DocumentEndpoint;
-use Idkollen\Client\Transport;
+use Identisure\Client\Endpoints\DocumentEndpoint;
+use Identisure\Client\Transport;
 use PHPUnit\Framework\TestCase;
 
 final class DocumentTest extends TestCase

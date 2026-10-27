@@ -2,10 +2,10 @@
 
 declare(strict_types=1);
 
-namespace Idkollen\Client\Endpoints;
+namespace Identisure\Client\Endpoints;
 
-use Idkollen\Client\Models\Document\DocumentUploadResponse;
-use Idkollen\Client\Transport;
+use Identisure\Client\Models\Document\DocumentUploadResponse;
+use Identisure\Client\Transport;
 
 final class DocumentEndpoint
 {

@@ -2,9 +2,9 @@
 
 declare(strict_types=1);
 
-namespace Idkollen\Client;
+namespace Identisure\Client;
 
-class IdkollenException extends \RuntimeException
+class IdentisureException extends \RuntimeException
 {
     public function __construct(
         public readonly int $statusCode,

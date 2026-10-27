@@ -2,14 +2,14 @@
 
 declare(strict_types=1);
 
-namespace Idkollen\Client\Tests;
+namespace Identisure\Client\Tests;
 
 use GuzzleHttp\Psr7\HttpFactory;
-use Idkollen\Client\Endpoints\FrejaEndpoint;
-use Idkollen\Client\Models\Freja\FrejaAuthRequest;
-use Idkollen\Client\Models\Freja\FrejaCompleted;
-use Idkollen\Client\Models\Freja\FrejaPending;
-use Idkollen\Client\Transport;
+use Identisure\Client\Endpoints\FrejaEndpoint;
+use Identisure\Client\Models\Freja\FrejaAuthRequest;
+use Identisure\Client\Models\Freja\FrejaCompleted;
+use Identisure\Client\Models\Freja\FrejaPending;
+use Identisure\Client\Transport;
 use PHPUnit\Framework\TestCase;
 
 final class FrejaTest extends TestCase

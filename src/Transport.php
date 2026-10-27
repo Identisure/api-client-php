@@ -2,7 +2,7 @@
 
 declare(strict_types=1);
 
-namespace Idkollen\Client;
+namespace Identisure\Client;
 
 use Psr\Http\Client\ClientExceptionInterface;
 use Psr\Http\Client\ClientInterface;
@@ -15,7 +15,7 @@ use Psr\Http\Message\StreamFactoryInterface;
  */
 final class Transport
 {
-    private const USER_AGENT = 'idkollen-client-php/0.1.0';
+    private const USER_AGENT = 'identisure-client-php/0.1.0';
 
     public function __construct(
         private readonly ClientInterface $httpClient,
@@ -91,10 +91,10 @@ final class Transport
         try {
             $decoded = json_decode($body, true, flags: JSON_THROW_ON_ERROR);
         } catch (\JsonException $e) {
-            throw new IdkollenException(0, "Invalid JSON response: {$e->getMessage()}", $e);
+            throw new IdentisureException(0, "Invalid JSON response: {$e->getMessage()}", $e);
         }
         if (!is_array($decoded)) {
-            throw new IdkollenException(0, 'Expected a JSON object in the response');
+            throw new IdentisureException(0, 'Expected a JSON object in the response');
         }
         return $decoded;
     }
@@ -104,7 +104,7 @@ final class Transport
         try {
             $response = $this->httpClient->sendRequest($request);
         } catch (ClientExceptionInterface $e) {
-            throw new IdkollenException(0, $e->getMessage(), $e);
+            throw new IdentisureException(0, $e->getMessage(), $e);
         }
 
         $statusCode = $response->getStatusCode();
@@ -113,7 +113,7 @@ final class Transport
         if ($statusCode < 200 || $statusCode >= 300) {
             $decoded = json_decode($body, true);
             $message = is_array($decoded) && isset($decoded['message']) ? (string) $decoded['message'] : $body;
-            throw new IdkollenException($statusCode, $message);
+            throw new IdentisureException($statusCode, $message);
         }
 
         return $body;

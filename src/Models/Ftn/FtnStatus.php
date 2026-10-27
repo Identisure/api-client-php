@@ -2,6 +2,6 @@
 
 declare(strict_types=1);
 
-namespace Idkollen\Client\Models\Ftn;
+namespace Identisure\Client\Models\Ftn;
 
 interface FtnStatus {}

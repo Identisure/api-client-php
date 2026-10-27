@@ -1,6 +1,6 @@
 {
-    "name": "idkollen/client",
-    "description": "PHP client for the IDkollen REST API",
+    "name": "identisure/client",
+    "description": "PHP client for the Identisure REST API",
     "type": "library",
     "license": "MIT",
     "require": {
@@ -18,12 +18,12 @@
     },
     "autoload": {
         "psr-4": {
-            "Idkollen\\Client\\": "php/src/"
+            "Identisure\\Client\\": "php/src/"
         }
     },
     "autoload-dev": {
         "psr-4": {
-            "Idkollen\\Client\\Tests\\": "php/tests/"
+            "Identisure\\Client\\Tests\\": "php/tests/"
         }
     },
     "scripts": {

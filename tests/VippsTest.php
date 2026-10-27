@@ -2,14 +2,14 @@
 
 declare(strict_types=1);
 
-namespace Idkollen\Client\Tests;
+namespace Identisure\Client\Tests;
 
 use GuzzleHttp\Psr7\HttpFactory;
-use Idkollen\Client\Endpoints\VippsEndpoint;
-use Idkollen\Client\Models\Vipps\VippsAuthRequest;
-use Idkollen\Client\Models\Vipps\VippsBackchannelAuthRequest;
-use Idkollen\Client\Models\Vipps\VippsPending;
-use Idkollen\Client\Transport;
+use Identisure\Client\Endpoints\VippsEndpoint;
+use Identisure\Client\Models\Vipps\VippsAuthRequest;
+use Identisure\Client\Models\Vipps\VippsBackchannelAuthRequest;
+use Identisure\Client\Models\Vipps\VippsPending;
+use Identisure\Client\Transport;
 use PHPUnit\Framework\TestCase;
 
 final class VippsTest extends TestCase

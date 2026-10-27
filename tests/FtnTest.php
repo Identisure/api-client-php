@@ -2,16 +2,16 @@
 
 declare(strict_types=1);
 
-namespace Idkollen\Client\Tests;
+namespace Identisure\Client\Tests;
 
 use GuzzleHttp\Psr7\HttpFactory;
-use Idkollen\Client\Endpoints\FtnEndpoint;
-use Idkollen\Client\Models\AgeVerification\AgeVerificationCompleted;
-use Idkollen\Client\Models\AgeVerification\AgeVerificationRequest;
-use Idkollen\Client\Models\Ftn\FtnAuthRequest;
-use Idkollen\Client\Models\Ftn\FtnPending;
-use Idkollen\Client\Models\Ftn\FtnUnknown;
-use Idkollen\Client\Transport;
+use Identisure\Client\Endpoints\FtnEndpoint;
+use Identisure\Client\Models\AgeVerification\AgeVerificationCompleted;
+use Identisure\Client\Models\AgeVerification\AgeVerificationRequest;
+use Identisure\Client\Models\Ftn\FtnAuthRequest;
+use Identisure\Client\Models\Ftn\FtnPending;
+use Identisure\Client\Models\Ftn\FtnUnknown;
+use Identisure\Client\Transport;
 use PHPUnit\Framework\TestCase;
 
 final class FtnTest extends TestCase

@@ -2,17 +2,17 @@
 
 declare(strict_types=1);
 
-namespace Idkollen\Client;
+namespace Identisure\Client;
 
-use Idkollen\Client\Endpoints\BankIdNoEndpoint;
-use Idkollen\Client\Endpoints\BankIdSeEndpoint;
-use Idkollen\Client\Endpoints\DocumentEndpoint;
-use Idkollen\Client\Endpoints\FrejaEndpoint;
-use Idkollen\Client\Endpoints\FtnEndpoint;
-use Idkollen\Client\Endpoints\MitIdEndpoint;
-use Idkollen\Client\Endpoints\VippsEndpoint;
+use Identisure\Client\Endpoints\BankIdNoEndpoint;
+use Identisure\Client\Endpoints\BankIdSeEndpoint;
+use Identisure\Client\Endpoints\DocumentEndpoint;
+use Identisure\Client\Endpoints\FrejaEndpoint;
+use Identisure\Client\Endpoints\FtnEndpoint;
+use Identisure\Client\Endpoints\MitIdEndpoint;
+use Identisure\Client\Endpoints\VippsEndpoint;
 
-final class IdkollenClient
+final class IdentisureClient
 {
     public function __construct(
         private readonly Transport $transport,

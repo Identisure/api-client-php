@@ -2,9 +2,9 @@
 
 declare(strict_types=1);
 
-namespace Idkollen\Client\Tests;
+namespace Identisure\Client\Tests;
 
-use Idkollen\Client\CallbackSignature;
+use Identisure\Client\CallbackSignature;
 use PHPUnit\Framework\TestCase;
 
 final class CallbackSignatureTest extends TestCase
