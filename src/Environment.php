@@ -12,8 +12,8 @@ enum Environment
     public function baseUrl(): string
     {
         return match ($this) {
-            self::Production => 'https://api.identisure.com',
-            self::Staging => 'https://stgapi.identisure.com',
+            self::Production => 'https://api.idkollen.se',
+            self::Staging => 'https://stgapi.idkollen.se',
         };
     }
 }
