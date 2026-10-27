@@ -20,21 +20,21 @@
     },
     "autoload": {
         "psr-4": {
-            "Identisure\\Client\\": "php/src/"
+            "Identisure\\Client\\": "src/"
         }
     },
     "autoload-dev": {
         "psr-4": {
-            "Identisure\\Client\\Tests\\": "php/tests/"
+            "Identisure\\Client\\Tests\\": "tests/"
         }
     },
     "scripts": {
-        "test": "phpunit -c php/phpunit.xml",
+        "test": "phpunit -c phpunit.xml",
         "check": [
-            "php-cs-fixer fix --config=php/.php-cs-fixer.dist.php --dry-run --diff",
-            "phpstan analyse -c php/phpstan.neon --no-progress --memory-limit=1G"
+            "php-cs-fixer fix --config=.php-cs-fixer.dist.php --dry-run --diff",
+            "phpstan analyse -c phpstan.neon --no-progress --memory-limit=1G"
         ],
-        "fix": "php-cs-fixer fix --config=php/.php-cs-fixer.dist.php"
+        "fix": "php-cs-fixer fix --config=.php-cs-fixer.dist.php"
     },
     "config": {
         "platform": {

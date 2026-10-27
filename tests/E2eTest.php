@@ -58,7 +58,7 @@ use PHPUnit\Framework\TestCase;
 
 final class E2eTest extends TestCase
 {
-    private const FIXTURES = __DIR__ . '/../../fixtures/';
+    private const FIXTURES = __DIR__ . '/../fixtures/';
 
     private MockHttpClient $http;
     private IdentisureClient $client;

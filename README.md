@@ -1,4 +1,4 @@
-<img align="left" height="100" style="margin-right: 10px;" src="../img/icon.png">
+<img align="left" height="100" style="margin-right: 10px;" src="img/icon.png">
 
 # Identisure PHP Client
 
@@ -72,6 +72,10 @@ $valid = CallbackSignature::verify($rawBody, $request->getHeaderLine('X-Signatur
 
 - PHP 8.3+
 - [Composer](https://getcomposer.org/)
+
+The tests use shared fixtures from a git submodule. Clone with
+`git clone --recurse-submodules`, or run `git submodule update --init` in an
+existing clone.
 
 ### Build
 
