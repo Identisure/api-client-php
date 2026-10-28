@@ -3,14 +3,19 @@
 # Identisure PHP Client
 
 [![Packagist version][packagist-image]][packagist-url]
+[![Documentation][docs-image]][docs-url]
 [![MIT license][license-image]][license-url]
 
 [packagist-image]: https://img.shields.io/packagist/v/identisure/client?style=flat-square
 [packagist-url]: https://packagist.org/packages/identisure/client
+[docs-image]: https://img.shields.io/badge/github-docs-orange?logo=github&style=flat-square
+[docs-url]: https://identisure.github.io/api-client-php
 [license-image]: https://img.shields.io/badge/license-MIT-blue?style=flat-square
 [license-url]: https://opensource.org/license/mit
 
 API client for the [Identisure](https://developers.identisure.com) REST API.
+
+Documentation: [identisure.github.io/api-client-php](https://identisure.github.io/api-client-php)
 
 ## Requirements
 
